@@ -1,6 +1,7 @@
 import { Button } from "antd";
 import { generate } from 'random-words'
 import { useStore } from "./store";
+import isEqual from 'fast-deep-equal'
 
 const ShowName = () => {
   const [name] = useStore(state => [state.name])
@@ -12,7 +13,7 @@ const ShowName = () => {
 
 
 const Left = () => {
-  const [setName] = useStore(state => [state.setName])
+  const [setName] = useStore(state => [state.setName], isEqual)
 
   const handleClick = () => {
     setName((generate(2) as string[]).join("-"))
